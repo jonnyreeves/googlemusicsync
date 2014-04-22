@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import os
 import errno
 import json
@@ -12,6 +10,9 @@ from gmusicapi import Musicmanager
 
 APP_DIRS = AppDirs('GoogleMusicSync', 'Jonny Reeves')
 DEFAULT_SYNC_COUNT = 200
+
+# Ensure all files are global read/write.
+os.umask(0000)
 
 def create_path_if_not_exist(path):
     try:
@@ -44,7 +45,7 @@ def download_track(mm, track, local_library):
 try:
 	cfg_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'settings.json')
 	print "Reading config from: " + cfg_file
-	
+
 	with open(cfg_file) as config_file:
 		cfg = json.load(config_file)
 		assert os.path.isdir(cfg['library'])
