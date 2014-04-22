@@ -1,0 +1,6 @@
+{
+	"library": "/absolute/path/",
+	"sync_count": 200,
+	"email": "you@google.com",
+	"password": "password"
+}
