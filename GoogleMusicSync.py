@@ -19,6 +19,7 @@ def create_path_if_not_exist(path):
             raise
 
 def download_track(mm, track, local_library):
+	local_library = local_library.encode('utf-8')
 	artist = track['artist'].encode('utf-8')
 	album = track['album'].encode('utf-8')
 	title = track['title'].encode('utf-8')
