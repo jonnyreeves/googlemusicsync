@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import os
 import errno
 import json
@@ -40,7 +42,10 @@ def download_track(mm, track, local_library):
 
 # Read configuration
 try:
-	with open('settings.json') as config_file:
+	cfg_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'settings.json')
+	print "Reading config from: " + cfg_file
+	
+	with open(cfg_file) as config_file:
 		cfg = json.load(config_file)
 		assert os.path.isdir(cfg['library'])
 except:
