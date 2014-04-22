@@ -23,6 +23,8 @@ def download_track(mm, track):
 	print "Downloading {0}/{1}/{2} to {3}".format(track['artist'], track['album'], track['title'], MUSIC_LIBRARY)
 
 	filename, audio = mm.download_song(track["id"])
+	filename =  filename.encode('utf-8')
+	
 	target_dir = os.path.join(MUSIC_LIBRARY, track["artist"], track["album"])
 	target_path = os.path.join(target_dir, filename)
 	create_path_if_not_exist(target_dir)
