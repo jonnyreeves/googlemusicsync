@@ -22,15 +22,14 @@ def create_path_if_not_exist(path):
             raise
 
 def download_track(mm, track, local_library):
-	local_library = local_library.encode('utf-8')
-	artist = track['artist'].encode('utf-8')
-	album = track['album'].encode('utf-8')
-	title = track['title'].encode('utf-8')
+	local_library = local_library
+	artist = track['artist']
+	album = track['album']
+	title = track['title']
 
-	print "Requesting {0} - {1} - {2}".format(artist, album, title)
+	print "Requesting %s - %s - %s" % (artist, album, title)
 
 	filename, audio = mm.download_song(track["id"])
-	filename =  filename.encode('utf-8')
 
 	target_dir = os.path.join(local_library, artist, album)
 	target_path = os.path.join(target_dir, filename)
@@ -55,7 +54,7 @@ except:
 
 # Login to GoogleMusic's Mobile API to get library metada
 api = Mobileclient()
-api.login(cfg["email"], cfg["password"])
+api.login(cfg["email"], cfg["password"], Mobileclient.FROM_MAC_ADDRESS)
 
 # And now login to the Musicmanager to perform downloads.
 mm = Musicmanager()
